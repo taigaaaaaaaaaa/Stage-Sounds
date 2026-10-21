@@ -52,6 +52,7 @@
 
 ### 固定リストで追加する
 
+まず`data`フォルダを作成してください。そして、`data/BGM`,`data/SoundEffects`を作成してください。
 効果音は `data/SoundEffects/` に保存し、`js/state.js` 冒頭の固定配列 `audioLibrary.soundEffects` に表示名・ファイル名・任意の説明を登録します。固定リストの BGM を使う場合は `audioLibrary.bgm` に登録します。登録後に `index.html` を再読み込みしてください。
 
 例:
