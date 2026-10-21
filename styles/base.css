@@ -1,0 +1,230 @@
+/* 基本色、ページ背景、ヘッダーとタイトル */
+:root {
+  color-scheme: light;
+  --theme-color: #5478e8;
+  --theme-rgb: 84, 120, 232;
+  --ink: #202533;
+  --muted: #788092;
+  --soft-muted: #9aa1af;
+  --page: #f5f7fb;
+  --surface: rgba(255, 255, 255, 0.74);
+  --line: rgba(95, 116, 158, 0.12);
+  --shadow: 0 16px 44px rgba(38, 55, 91, 0.075), 0 2px 8px rgba(38, 55, 91, 0.035);
+  --glass-blur: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", Meiryo, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse 72rem 42rem at 8% -12%, rgba(178, 207, 255, 0.42), transparent 68%),
+    radial-gradient(ellipse 58rem 44rem at 94% 16%, rgba(208, 202, 244, 0.28), transparent 70%),
+    radial-gradient(ellipse 52rem 40rem at 52% 100%, rgba(197, 222, 244, 0.22), transparent 74%),
+    linear-gradient(160deg, #f7f9ff 0%, #f2f5fc 52%, #f8f8fc 100%);
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+/* 遠景の光を広くぼかし、ライトテーマに軽さと奥行きを加えます。 */
+body::before,
+body::after {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  background:
+    linear-gradient(122deg, transparent 22%, rgba(255, 255, 255, 0.3) 37%, transparent 53%),
+    radial-gradient(ellipse at 50% 0, rgba(var(--theme-rgb), 0.075), transparent 42rem);
+}
+
+body::after {
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+body.has-active-playback {
+  padding-bottom: 132px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(var(--theme-rgb), 0.38);
+  outline-offset: 3px;
+}
+
+.app-shell {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 48px, 1080px);
+  margin: 0 auto;
+}
+
+.settings-card,
+.sound-section,
+.sound-card,
+.active-playback-card,
+.help-dialog,
+.import-file-row,
+.footer-notice {
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .settings-card,
+  .sound-section,
+  .sound-card,
+  .active-playback-card,
+  .help-dialog,
+  .import-file-row,
+  .footer-notice {
+    background: rgba(255, 255, 255, 0.96);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .settings-card,
+  .sound-section,
+  .sound-card,
+  .active-playback-card,
+  .help-dialog,
+  .import-file-row,
+  .footer-notice {
+    background: rgba(255, 255, 255, 0.98);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.topbar {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(35, 45, 68, 0.07);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(var(--theme-rgb), 0.11);
+  color: var(--theme-color);
+  font-size: 19px;
+}
+
+.help-button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 15px;
+  border: 1px solid rgba(36, 48, 74, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #4e5667;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.help-button:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.help-icon {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(var(--theme-rgb), 0.12);
+  color: var(--theme-color);
+  font-size: 12px;
+}
+
+main {
+  padding: 66px 0 38px;
+}
+
+.hero {
+  max-width: 700px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0;
+  color: var(--theme-color);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+}
+
+.hero h1 {
+  margin: 14px 0 13px;
+  font-size: clamp(34px, 5.4vw, 54px);
+  font-weight: 780;
+  letter-spacing: -0.065em;
+  line-height: 1.28;
+}
+
+.hero-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.mobile-break {
+  display: none;
+}

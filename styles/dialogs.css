@@ -1,0 +1,243 @@
+/* HELP・音声追加ダイアログと共通ボタン */
+.help-dialog {
+  width: min(100% - 32px, 520px);
+  max-height: min(90vh, 760px);
+  padding: 28px;
+  overflow: auto;
+  border: 1px solid rgba(39, 52, 80, 0.07);
+  border-radius: 27px;
+  background: var(--surface);
+  box-shadow: 0 24px 80px rgba(24, 34, 59, 0.2);
+  color: var(--ink);
+}
+
+.import-dialog {
+  width: min(100% - 32px, 570px);
+}
+
+.terms-dialog {
+  width: min(100% - 32px, 650px);
+}
+
+.terms-updated {
+  margin: -10px 0 10px;
+  color: var(--soft-muted);
+  font-size: 10px;
+}
+
+.terms-content {
+  max-height: min(55vh, 470px);
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.terms-content .help-item {
+  padding: 11px 0;
+}
+
+.import-instructions {
+  margin: -6px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.import-status {
+  margin: 10px 0 0;
+  color: #b34545;
+  font-size: 11px;
+}
+
+.import-status:empty {
+  display: none;
+}
+
+.import-file-list {
+  display: grid;
+  max-height: min(45vh, 330px);
+  gap: 9px;
+  overflow: auto;
+  padding: 1px 3px 2px 1px;
+}
+
+.import-file-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(130px, 0.9fr);
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.import-file-info {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.import-original-name {
+  overflow: hidden;
+  color: #41495a;
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.import-file-size {
+  color: var(--soft-muted);
+  font-size: 10px;
+}
+
+.import-name-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid #e6eaf1;
+  border-radius: 10px;
+  background: #fafbfc;
+  color: var(--ink);
+  font-size: 12px;
+}
+
+.import-name-input:focus {
+  border-color: rgba(var(--theme-rgb), 0.55);
+}
+
+.import-footer {
+  align-items: flex-end;
+}
+
+.import-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.secondary-button {
+  min-height: 43px;
+  padding: 0 13px;
+  border: 1px solid #e7eaf0;
+  border-radius: 14px;
+  background: #fff;
+  color: #5b6475;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.help-dialog::backdrop {
+  background: rgba(29, 38, 57, 0.32);
+  backdrop-filter: blur(5px);
+}
+
+.dialog-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.dialog-heading h2 {
+  margin: 4px 0 0;
+  font-size: 27px;
+  font-weight: 780;
+  letter-spacing: -0.055em;
+}
+
+.icon-button {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f2f4f7;
+  color: #687183;
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 1;
+}
+
+.help-content {
+  display: grid;
+  gap: 5px;
+}
+
+.help-item {
+  display: grid;
+  grid-template-columns: 37px 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.help-item:last-child {
+  border-bottom: 0;
+}
+
+.help-number {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(var(--theme-rgb), 0.1);
+  color: var(--theme-color);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.help-item h3 {
+  margin: 1px 0 4px;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.help-item p,
+.dialog-footer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.primary-button {
+  min-width: 106px;
+  min-height: 43px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--theme-color);
+  box-shadow: 0 5px 14px rgba(var(--theme-rgb), 0.22);
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 750;
+  transition: filter 150ms ease, transform 150ms ease;
+}
+
+.primary-button:hover {
+  filter: brightness(1.05);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}

@@ -1,0 +1,2 @@
+/* 共通の土台を読み込み、部品ごとのCSSはHTMLから並行して読み込む */
+@import url("styles/base.css");

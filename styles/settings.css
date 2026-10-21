@@ -1,0 +1,117 @@
+/* テーマカラー設定と再生状況ツールバー */
+.settings-card {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 22px;
+  border: 1px solid rgba(41, 55, 83, 0.045);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.settings-copy {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.settings-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 14px;
+  background: rgba(var(--theme-rgb), 0.1);
+  color: var(--theme-color);
+  font-size: 19px;
+}
+
+.settings-copy h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.settings-copy p {
+  margin: 1px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.color-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #555e6e;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.color-control input {
+  width: 38px;
+  height: 38px;
+  padding: 3px;
+  overflow: hidden;
+  border: 1px solid #e7eaf0;
+  border-radius: 13px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.color-control input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-control input::-webkit-color-swatch {
+  border: 0;
+  border-radius: 9px;
+}
+
+.playback-toolbar {
+  display: flex;
+  min-height: 66px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 4px 0;
+}
+
+.playback-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.playback-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stop-all-button {
+  display: inline-flex;
+  min-height: 37px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  border: 1px solid #e7eaf0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #545d6d;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  transition: background 160ms ease, opacity 160ms ease;
+}
+
+.stop-all-button:not(:disabled):hover {
+  background: #fff;
+}
+
+.stop-all-button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}

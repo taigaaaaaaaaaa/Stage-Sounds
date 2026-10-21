@@ -1,0 +1,9 @@
+# 音源フォルダ
+data/BGM/
+data/SoundEffects/
+# 一応
+data/*
+
+# 音源
+*.mp3
+*.m4a

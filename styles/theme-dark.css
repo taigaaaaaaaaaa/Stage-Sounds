@@ -1,0 +1,275 @@
+/*AI使用しています。*/
+/* 暗い舞台でも目にやさしい、光が差し込む半透明のダークテーマです。 */
+:root {
+  color-scheme: dark;
+  --ink: #f2f5ff;
+  --muted: #b0bad0;
+  --soft-muted: #8793ad;
+  --page: #080c18;
+  --surface: rgba(20, 27, 45, 0.72);
+  --line: rgba(190, 207, 244, 0.16);
+  --shadow: 0 18px 54px rgba(2, 5, 15, 0.25), 0 3px 10px rgba(2, 5, 15, 0.12);
+  --glass-blur: 24px;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 64rem 44rem at 12% -16%, rgba(76, 111, 167, 0.24), transparent 72%),
+    radial-gradient(ellipse 58rem 48rem at 94% 6%, rgba(104, 91, 142, 0.17), transparent 72%),
+    radial-gradient(ellipse 60rem 46rem at 50% 112%, rgba(53, 94, 135, 0.16), transparent 76%),
+    linear-gradient(155deg, #101726 0%, #0b101c 48%, #090d17 100%);
+  color: var(--ink);
+}
+
+body::before {
+  background:
+    linear-gradient(122deg, transparent 17%, rgba(204, 222, 255, 0.075) 34%, rgba(175, 204, 248, 0.025) 43%, transparent 57%),
+    linear-gradient(138deg, transparent 44%, rgba(193, 187, 231, 0.045) 55%, transparent 68%),
+    radial-gradient(ellipse at 50% 0, rgba(var(--theme-rgb), 0.11), transparent 42rem);
+  opacity: 0.85;
+}
+
+body::after {
+  opacity: 0.075;
+  mix-blend-mode: soft-light;
+}
+
+.settings-card,
+.sound-section,
+.sound-card,
+.active-playback-card,
+.help-dialog,
+.import-file-row,
+.footer-notice {
+  border-color: rgba(198, 213, 247, 0.16);
+  box-shadow:
+    0 20px 56px rgba(1, 4, 13, 0.24),
+    0 3px 10px rgba(1, 4, 13, 0.12),
+    inset 0 1px 0 rgba(239, 245, 255, 0.075);
+}
+
+.topbar {
+  border-bottom-color: rgba(190, 207, 244, 0.12);
+}
+
+.brand,
+.hero h1,
+.settings-copy h2,
+.section-heading h2,
+.playback-dock-heading h2,
+.dialog-heading h2,
+.help-item h3 {
+  color: var(--ink);
+}
+
+.brand-mark,
+.settings-icon,
+.section-badge,
+.help-number,
+.help-icon {
+  background-color: rgba(var(--theme-rgb), 0.18);
+  color: #b9ccff;
+}
+
+.help-button,
+.settings-card,
+.sound-section,
+.sound-card,
+.active-playback-card,
+.help-dialog,
+.import-file-row {
+  border-color: rgba(190, 207, 244, 0.14);
+  background: rgba(19, 26, 44, 0.68);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(118%);
+}
+
+.help-button {
+  color: #e0e7f6;
+}
+
+.help-button:hover {
+  background: rgba(34, 44, 68, 0.82);
+}
+
+.settings-card {
+  background: rgba(21, 29, 49, 0.67);
+}
+
+.color-control,
+.track-volume-control {
+  color: #bdc7dc;
+}
+
+.color-control input {
+  border-color: rgba(190, 207, 244, 0.2);
+  background: rgba(11, 16, 29, 0.9);
+}
+
+.stop-all-button,
+.secondary-button,
+.shortcut-button,
+.icon-button,
+.individual-stop-button {
+  border-color: rgba(190, 207, 244, 0.16);
+  background: rgba(37, 47, 69, 0.72);
+  color: #d5deef;
+}
+
+.stop-all-button:not(:disabled):hover,
+.secondary-button:hover,
+.shortcut-button:hover,
+.icon-button:hover {
+  background: rgba(54, 68, 98, 0.86);
+}
+
+.sound-card {
+  background: rgba(25, 34, 54, 0.76);
+}
+
+.sound-card:hover {
+  background: rgba(31, 42, 65, 0.86);
+  box-shadow:
+    0 18px 38px rgba(1, 4, 13, 0.27),
+    0 0 20px rgba(var(--theme-rgb), 0.055),
+    inset 0 1px 0 rgba(239, 245, 255, 0.09);
+}
+
+.sound-name,
+.active-playback-title,
+.import-original-name {
+  color: #eef2ff;
+}
+
+.track-drag-handle,
+.track-order-button {
+  color: #a7b3cb;
+}
+
+.track-drag-handle:hover,
+.track-order-button:not(:disabled):hover {
+  border-color: rgba(190, 207, 244, 0.18);
+  background: rgba(69, 83, 112, 0.45);
+}
+
+.shortcut-button {
+  background: rgba(42, 53, 77, 0.62);
+}
+
+.playback-dock {
+  border-top-color: rgba(190, 207, 244, 0.16);
+  background: rgba(10, 15, 28, 0.84);
+  box-shadow:
+    0 -20px 56px rgba(0, 0, 0, 0.32),
+    0 -1px 26px rgba(var(--theme-rgb), 0.055),
+    inset 0 1px 0 rgba(228, 238, 255, 0.06);
+  -webkit-backdrop-filter: blur(28px) saturate(125%);
+  backdrop-filter: blur(28px) saturate(125%);
+}
+
+.active-playback-card {
+  background: rgba(29, 38, 60, 0.78);
+}
+
+.individual-stop-button:hover {
+  background: rgba(154, 63, 78, 0.3);
+  color: #ffabb4;
+}
+
+.active-playbacks {
+  scrollbar-color: #515e78 transparent;
+}
+
+.empty-state {
+  border-color: rgba(190, 207, 244, 0.2);
+  background: rgba(21, 29, 48, 0.52);
+}
+
+.footer-notice {
+  border-color: rgba(190, 207, 244, 0.14);
+  background: rgba(19, 26, 44, 0.7);
+}
+
+.footer-notice-icon {
+  color: #b9ccff;
+}
+
+.help-dialog {
+  background: rgba(17, 24, 41, 0.94);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55), 0 0 50px rgba(var(--theme-rgb), 0.1);
+}
+
+.help-dialog::backdrop {
+  background: rgba(2, 5, 12, 0.72);
+  backdrop-filter: blur(9px);
+}
+
+.help-item {
+  border-bottom-color: rgba(190, 207, 244, 0.12);
+}
+
+.help-item p,
+.dialog-footer p,
+.import-instructions {
+  color: #b3bfd5;
+}
+
+.import-status {
+  color: #ff9da8;
+}
+
+.import-file-row {
+  background: rgba(29, 38, 60, 0.72);
+}
+
+.import-name-input {
+  border-color: rgba(190, 207, 244, 0.17);
+  background: rgba(10, 15, 27, 0.8);
+  color: var(--ink);
+}
+
+.import-name-input::placeholder {
+  color: #8793ad;
+}
+
+.sr-only + input[type="color"] {
+  color-scheme: dark;
+}
+
+::selection {
+  background: rgba(var(--theme-rgb), 0.38);
+  color: #fff;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .help-button,
+  .settings-card,
+  .sound-section,
+  .sound-card,
+  .active-playback-card,
+  .help-dialog,
+  .import-file-row,
+  .footer-notice {
+    background: rgba(19, 26, 44, 0.94);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .help-button,
+  .settings-card,
+  .sound-section,
+  .sound-card,
+  .active-playback-card,
+  .help-dialog,
+  .import-file-row,
+  .footer-notice {
+    background: rgba(19, 26, 44, 0.98);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

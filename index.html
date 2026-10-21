@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d19">
+  <title>音流せるやつ</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/settings.css">
+  <link rel="stylesheet" href="styles/library.css">
+  <link rel="stylesheet" href="styles/player.css">
+  <link rel="stylesheet" href="styles/dialogs.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <link rel="stylesheet" href="styles/theme-dark.css">
+  <script src="js/state.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/library-view.js" defer></script>
+  <script src="js/shortcuts.js" defer></script>
+  <script src="js/player.js" defer></script>
+  <script src="js/audio-library.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="音流せるやつ ホーム">
+        <span class="brand-mark" aria-hidden="true">♪</span>
+        <span>音流せるやつ</span>
+      </a>
+      <div class="topbar-actions">
+        <button class="help-button" id="help-open" type="button" aria-haspopup="dialog">
+          <span class="help-icon" aria-hidden="true">?</span>
+          <span>使い方</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">CULTURAL FESTIVAL · SOUND CUE</p>
+        <h1 id="page-title">音流せるやつ</h1>
+        <p class="hero-copy">みんなで最高の文化祭にしましょう！🔥🔥</p>
+        <p class="hero-copy">これらはすべてたいがが作りました✨</p>
+      </section>
+
+      <section class="settings-card" aria-labelledby="settings-title">
+        <div class="settings-copy">
+          <span class="settings-icon" aria-hidden="true">✦</span>
+          <div>
+            <h2 id="settings-title">テーマカラー</h2>
+            <p>好きな色にカスタマイズできます</p>
+          </div>
+        </div>
+        <label class="color-control" for="theme-color">
+          <span class="sr-only">テーマカラーを選択</span>
+          <input id="theme-color" type="color" value="#5478e8">
+          <span class="color-label">色を選ぶ</span>
+        </label>
+      </section>
+
+       <p class="footer-credit">音声を流す際は一度音量を確認してから流すようにしてください。</p>
+       
+      <section class="playback-toolbar" aria-label="再生状況と操作">
+        <p class="playback-status" id="playback-status" role="status" aria-live="polite">
+          再生中の音はありません
+        </p>
+        <div class="playback-toolbar-actions">
+          <button class="stop-all-button" id="stop-all" type="button" disabled>
+            <span aria-hidden="true">■</span> すべて停止
+          </button>
+        </div>
+      </section>
+
+      <div class="sound-sections">
+        <section class="sound-section" aria-labelledby="bgm-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">MUSIC</p>
+              <h2 id="bgm-title">BGM</h2>
+              <p class="section-description">サザエさんとか</p>
+            </div>
+            <div class="bgm-heading-actions">
+              <button class="add-audio-button" id="add-bgm" type="button">＋ BGMを追加</button>
+              <span class="section-badge" aria-hidden="true">♫</span>
+            </div>
+          </div>
+          <input id="bgm-file-picker" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.aiff,.aif,.opus" multiple hidden>
+          <div class="sound-grid" id="bgm-list"></div>
+        </section>
+
+        <section class="sound-section" aria-labelledby="effects-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">SOUND EFFECTS</p>
+              <h2 id="effects-title">効果音</h2>
+              <p class="section-description">どかーんとかばきゅーんとか</p>
+            </div>
+            <div class="bgm-heading-actions">
+              <button class="add-audio-button" id="add-effect" type="button">＋ 効果音を追加</button>
+              <span class="section-badge effects-badge" aria-hidden="true">✧</span>
+            </div>
+          </div>
+          <input id="effects-file-picker" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.aiff,.aif,.opus" multiple hidden>
+          <div class="sound-grid" id="effects-list"></div>
+        </section>
+      </div>
+
+      <footer class="app-footer">
+        <aside class="footer-notice" aria-label="音声データの保存について">
+          <span class="footer-notice-icon" aria-hidden="true">i</span>
+          <div>
+            <h2>音声データの保存について</h2>
+            <p>+ボタンで追加した音声はこのブラウザ内に保存されます。ブラウザのデータを消去すると失われることがあるため、元ファイルも保管してください。</p>
+          </div>
+        </aside>
+        <div class="footer-meta">
+          <p class="footer-credit">制作：たいが <span aria-hidden="true">·</span> 一部CSSの作成にAIを利用。Thanks Claude Code！</p>
+          <nav class="footer-links" aria-label="関連リンク">
+            <a href="https://github.com/taigaaaaaaaaaa" target="_blank" rel="noopener">GitHub</a>
+            <button class="footer-link" id="terms-open" type="button" aria-haspopup="dialog">利用規約・プライバシー</button>
+          </nav>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <section class="playback-dock" id="playback-dock" aria-label="再生中の音声" hidden>
+    <div class="playback-dock-heading">
+      <div>
+        <p class="section-kicker">NOW PLAYING</p>
+        <h2>再生中</h2>
+      </div>
+      <p class="playback-dock-hint">音量と再生位置を音ごとに調整できます</p>
+    </div>
+    <div class="active-playbacks" id="active-playbacks" aria-live="polite"></div>
+  </section>
+
+  <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title">
+    <div class="dialog-heading">
+      <div>
+        <p class="section-kicker">QUICK GUIDE</p>
+        <h2 id="help-title">使い方</h2>
+      </div>
+      <button class="icon-button" id="help-close" type="button" aria-label="使い方を閉じる">×</button>
+    </div>
+    <div class="help-content">
+      <article class="help-item">
+        <span class="help-number">01</span>
+        <div>
+          <h3>音を鳴らす</h3>
+          <p>「BGM」または「効果音」の再生ボタンを押してください。各音声カードの音量バーで音ごとの基本音量を調節できます。再生中の音は画面下部に表示され、音量や再生位置をその再生だけ個別に変更したり、停止したりできます。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">02</span>
+        <div>
+          <h3>キーで再生する</h3>
+          <p>各音声の「キー設定」を押してから、割り当てたいキーを押します。同じキーは複数の音に設定できません。設定したキーを押すと音が再生されます。Ctrl・Alt などとの組み合わせには対応していません。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">03</span>
+        <div>
+          <h3>音声の順番を変える</h3>
+          <p>音声カード左側の「⠿」をドラッグするか、上下の矢印ボタンを押して並べ替えます。順番は自動で保存されます。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">04</span>
+        <div>
+          <h3>音を重ねる・止める</h3>
+          <p>再生中に別の音や同じ音を押すと、そのまま重ねて再生できます。「すべて停止」で再生中の音をまとめて止められます。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">05</span>
+        <div>
+          <h3>音声を追加する</h3>
+          <p>BGM と効果音は、それぞれの「追加」ボタンから選び、表示名を入力して追加できます。音声とキー設定は保存され、次回起動時にも使えます。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">06</span>
+        <div>
+          <h3>色を変える</h3>
+          <p>「テーマカラー」の色見本を押すと、選んだ色がすぐに反映されます。色は次回起動時にも引き継がれます。</p>
+        </div>
+      </article>
+    </div>
+    <div class="dialog-footer">
+      <p>この画面は右上の「使い方」からいつでも開けます。</p>
+      <button class="primary-button" id="help-done" type="button">はじめる</button>
+    </div>
+  </dialog>
+
+  <dialog class="help-dialog terms-dialog" id="terms-dialog" aria-labelledby="terms-title">
+    <div class="dialog-heading">
+      <div>
+        <p class="section-kicker">TERMS &amp; PRIVACY</p>
+        <h2 id="terms-title">利用規約・プライバシー</h2>
+      </div>
+      <button class="icon-button" id="terms-close" type="button" aria-label="利用規約を閉じる">×</button>
+    </div>
+    <p class="terms-updated">制定日：2026年10月11日</p>
+    <div class="help-content terms-content">
+      <article class="help-item">
+        <span class="help-number">01</span>
+        <div>
+          <h3>このアプリについて</h3>
+          <p>このアプリは、文化祭などの演出でBGMや効果音を再生するためのものです。利用者は、本規約に沿ってご自身の責任で利用してください。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">02</span>
+        <div>
+          <h3>音源の権利と利用</h3>
+          <p>利用者が追加・登録する音源について、必要な著作権、著作隣接権、利用許諾などを十分確認してください。学校行事や公演で音源を再生する場合も、利用者が関係する権利者・学校・会場のルールを確認し、必要な手続きを行ってください。（恐らく生徒会に言ったら無問題だと思われる）このアプリは音源の権利処理や利用許諾を提供しません。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">03</span>
+        <div>
+          <h3>保存する情報</h3>
+          <p>追加した音声ファイルと表示名、再生キー、音量、並び順は、このブラウザのIndexedDBに保存されます。テーマカラーはlocalStorageに保存されます。これらのデータをアプリのサーバーへ送信する機能はありません。ブラウザのデータ消去や保存領域の制限などにより、設定や音声が失われることがあります。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">04</span>
+        <div>
+          <h3>してはいけないこと</h3>
+          <p>法令や学校・会場の規則に反する利用、権利者の許可がない音源の配布・公開、第三者に迷惑や損害を与える利用はしないでください。もし作者以外がファイルを追加することがあれば、ご自身で安全性を確認してください。音源を追加したい場合はたいがに言ってください。速攻実装します。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">05</span>
+        <div>
+          <h3>免責事項</h3>
+          <p>作者は、本アプリの継続的な提供、すべての端末・ブラウザでの動作、保存データの保持を保証しません。本アプリの利用または利用できなかったことによる損害について、法令上認められる範囲で責任を負いません。公演前に使用する機器で再生・音量を確認してくささい。</p>
+        </div>
+      </article>
+      <article class="help-item">
+        <span class="help-number">06</span>
+        <div>
+          <h3>規約の変更</h3>
+          <p>必要に応じて本規約を更新することがあります。更新後の内容は、この画面に掲載した時点から適用されます。</p>
+        </div>
+      </article>
+    </div>
+    <div class="dialog-footer">
+      <p>この規約は一般的な利用上の案内です。必要に応じて学校や権利者に確認してください。</p>
+      <button class="primary-button" id="terms-done" type="button">閉じる</button>
+    </div>
+  </dialog>
+
+  <dialog class="help-dialog import-dialog" id="audio-import-dialog" aria-labelledby="import-title">
+    <form id="audio-import-form">
+      <div class="dialog-heading">
+        <div>
+          <p class="section-kicker" id="import-kicker">ADD YOUR MUSIC</p>
+          <h2 id="import-title">音声を追加</h2>
+        </div>
+        <button class="icon-button" id="import-close" type="button" aria-label="追加をキャンセル">×</button>
+      </div>
+      <p class="import-instructions">選んだ音声を検出しました。ボタンに表示する名前を入力してください。音声と名前はこのブラウザに保存されます。</p>
+      <div class="import-file-list" id="import-file-list"></div>
+      <p class="import-status" id="import-status" role="status" aria-live="polite"></p>
+      <div class="dialog-footer import-footer">
+        <p>保存容量には上限があります。元の音声ファイルは変更しません。</p>
+        <div class="import-actions">
+          <button class="secondary-button" id="import-cancel" type="button">キャンセル</button>
+          <button class="primary-button" type="submit">追加する</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
+<!--音追加するときはjs/state.jsのaudioLibraryに追加。例も載っているから読め。-->
+<!--RKHQ-GFD8-TZZP-70KC ｽﾋﾟｷMMO-->

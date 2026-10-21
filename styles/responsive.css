@@ -1,0 +1,222 @@
+/* 画面幅に応じたレイアウト調整 */
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - 32px, 560px);
+  }
+
+  main {
+    padding-top: 49px;
+  }
+
+  .hero {
+    margin-bottom: 32px;
+  }
+
+  .sound-sections {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .sound-section {
+    padding: 22px;
+  }
+
+  .footer-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    width: min(100% - 24px, 560px);
+  }
+
+  body.has-active-playback {
+    padding-bottom: 126px;
+  }
+
+  .playback-dock {
+    padding: 9px 12px 11px;
+  }
+
+  .playback-dock-hint {
+    max-width: 145px;
+    text-align: right;
+  }
+
+  .playback-toolbar {
+    flex-wrap: wrap;
+    padding-bottom: 8px;
+  }
+
+  .playback-toolbar-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .active-playback-card {
+    flex-basis: min(285px, 83vw);
+  }
+
+  .topbar {
+    min-height: 72px;
+  }
+
+  .mobile-break {
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-copy {
+    font-size: 13px;
+  }
+
+  .settings-card {
+    padding: 14px;
+    border-radius: 17px;
+  }
+
+  .settings-copy {
+    gap: 9px;
+  }
+
+  .settings-icon {
+    width: 37px;
+    height: 37px;
+  }
+
+  .settings-copy p {
+    max-width: 172px;
+    font-size: 10px;
+  }
+
+  .app-footer {
+    gap: 12px;
+    padding-top: 24px;
+  }
+
+  .footer-notice {
+    padding: 12px;
+  }
+
+  .footer-meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .footer-links {
+    gap: 14px;
+  }
+
+  .color-label {
+    display: none;
+  }
+
+  .sound-section {
+    padding: 19px;
+  }
+
+  .sound-card {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 11px;
+  }
+
+  .track-order-controls {
+    order: 2;
+    gap: 1px;
+  }
+
+  .track-drag-handle,
+  .track-order-button {
+    width: 23px;
+  }
+
+  .sound-details {
+    order: 1;
+    flex-basis: calc(100% - 126px);
+  }
+
+  .sound-actions {
+    order: 3;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .shortcut-button {
+    max-width: 82px;
+    min-height: 36px;
+    padding: 0 7px;
+    font-size: 9px;
+  }
+
+  .play-button {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .bgm-heading-actions {
+    gap: 7px;
+  }
+
+  .add-audio-button {
+    min-height: 34px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .bgm-heading-actions .section-badge {
+    width: 40px;
+    height: 40px;
+  }
+
+  .help-dialog {
+    padding: 22px 19px;
+    border-radius: 23px;
+  }
+
+  .dialog-footer {
+    align-items: flex-end;
+  }
+
+  .dialog-footer p {
+    max-width: 205px;
+  }
+
+  .import-footer {
+    display: grid;
+  }
+
+  .import-footer p {
+    max-width: none;
+  }
+
+  .import-actions {
+    width: 100%;
+  }
+
+  .import-actions button {
+    flex: 1;
+  }
+
+  .import-file-row {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
